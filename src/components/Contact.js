@@ -27,21 +27,21 @@ export const Contact = () => {
     e.preventDefault();
     setButtonText("Sending...");
 
-    const emailData ={
-      firstName: formDetails.firstName,
-      lastName: formDetails.lastName,
-      email: formDetails.email,
-      phone: formDetails.phone,
-      message: formDetails.message,
-    };
-    try {
+    // const emailData ={
+    //   firstName: formDetails.firstName,
+    //   lastName: formDetails.lastName,
+    //   email: formDetails.email,
+    //   phone: formDetails.phone,
+    //   message: formDetails.message,
+    // };
+    // try {
       // await sendEmail(emailData);
-      const response = await fetch("http://localhost:5000/send-email", {
+      let response = await fetch("http://localhost:5000/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json;charset=utf-8",
         },
-        body: JSON.stringify(emailData),
+        body: JSON.stringify(formDetails),
       });
 
       setButtonText("Send");
@@ -53,11 +53,11 @@ export const Contact = () => {
       } else {
         setStatus({ success: false, message: 'Something went wrong, please try again later.' });
       }
-    } catch (error) {
-      console.log(error);
-      setButtonText("Send");
-      setStatus({ success: false, message: 'Something went wrong, please try again later.' });
-    }
+    // } catch (error) {
+    //   console.log(error);
+    //   setButtonText("Send");
+    //   setStatus({ success: false, message: 'Something went wrong, please try again later.' });
+    // }
   };
 
   return (
